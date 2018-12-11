@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.css">
+  <title>Quotes</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="center-align">
+      Few Quotes to play with Vanilla JavaScript
+    </h1>
+    <input type="text" id="filterInput" placeholder="Search quotes by a keyword...">
+    <ul id="names" class="collection with-header">
+
+      <li class="collection-item">
+        <a href="#">“If you don’t like something change it. If you can’t change it, change your attitude. Don’t complain.” — Maya Angelou.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“People take different roads seeking fulfillment and happiness. Just because they are not on your road, doesn’t mean they’ve gotten lost.” — Dalai Lama.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“Try and fail, but don’t fail to try.” — Stephen Kaggwa.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“The mind is everything. What you think, you become.” — Buddha.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“We ARE our choices.” — J.P. Sartre.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“I’m rarely bored alone; I am often bored in groups and crowds.” — Laurie Halgoe.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“When I let go of what I am, I become what I might be.” — Lao Tzu.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“He who angers you, conquers you.” — Elizabeth Kenny.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“Character is doing the right thing when nobody’s looking.” — J.C. Watts.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">“Not all those who wander are lost.” — J.R. R. Tolkein.</a>
+      </li>
+      <li class="collection-item">
+        <a href="#">"Winners make a habit of manufacturing their own positive expectations in advance of the event." --Brian Tracy.</a>
+      </li>  <li class="collection-item">
+          <a href="#">"Let yourself be silently drawn by the stronger pull of what you really love." --Rumi.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">"Life is really simple, but men insist on making it complicated." --Confucius.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">"It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change." --Charles Darwin.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“When I let go of what I am, I become what I might be.” — Lao Tzu.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“He who angers you, conquers you.” — Elizabeth Kenny.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“Try and fail, but don’t fail to try.” — Stephen Kaggwa.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“The mind is everything. What you think, you become.” — Buddha.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“We ARE our choices.” — J.P. Sartre.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“Character is doing the right thing when nobody’s looking.” — J.C. Watts.</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">“Not all those who wander are lost.” — J.R. R. Tolkein.</a>
+        </li>
+
+    </ul>
+  </div>
+
+  <script>
+    // Get input element - grab element tag by id which is filterInput
+    let filterInput = document.getElementById('filterInput');
+    // Add event listener          event    function
+    filterInput.addEventListener('keyup', filterNames);
+    //call function
+    function filterNames(){
+      // Get value of input
+      let filterValue = document.getElementById('filterInput').value.toUpperCase();
+
+      // Get names ul
+      let ul = document.getElementById('names');
+      // Get lis from ul     querySelectorAll- select anything based on class name
+      let li = ul.querySelectorAll('li.collection-item');
+
+      // Loop through collection-item lis
+      for(let i = 0;i < li.length;i++){// 'a' is an a tag , to get current name used 0
+        let a = li[i].getElementsByTagName('a')[0];
+        // If matched innerHTML - grab whatever inside the a tag
+        // indexOf =  indexOf() takes only one argument which is the item we are looking for and in which index it is
+        if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+          li[i].style.display = '';
+        } else {
+          li[i].style.display = 'none';
+        }
+      }
+
+    }
+  </script>
+</body>
+</html>
