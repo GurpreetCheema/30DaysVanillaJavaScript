@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <style>
+    #fact{
+      display:none;
+    }
+  </style>
+  <title>Number Facts</title>
+</head>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card bg-secondary text-white mt-5 p-4">
+          <h1>Number Facts</h1>
+          <p>Enter a number and get a random fact</p>
+          <input type="number" class="form-control form-control-lg" id="numberInput" placeholder="Enter any number...">
+          <div id="fact" class="card-body">
+            <h4 class="card-title">
+              Number Fact
+            </h4>
+            <p id="factText" class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+  // create a variable for fact
+    let fact = document.querySelector('#fact');
+    // variable for factText
+    let factText = document.querySelector('#factText');
+    // event listened to it is input and then call function getFactAjax
+    let numberInput = document.querySelector('#numberInput');
+    numberInput.addEventListener('input', getFactAjax);
+
+    // Fetch with XHR
+    function getFactAjax(){
+      //console.log(123); we will see 123 in console //console.log
+      // so we need a number to show on console with
+      let number = numberInput.value;
+      //console.log(number) - whatever number we type will show in console
+      // now we need
+      if(number != ''){
+        //request to an API
+        let xhr = new XMLHttpRequest();
+        //add the number variable with API
+        xhr.open('GET', 'http://numbersapi.com/'+number);
+       // after we get request we go for this function
+        xhr.onload = function(){
+
+          if(this.status == 200 && number != ''){
+            //now text is showing, those facts
+            fact.style.display = 'block';
+
+            factText.innerText = this.responseText;
+          }
+        }
+       // send reuest and get response from status
+        xhr.send();
+        }
+    }
+
+
+    // Fetch with Fetch API
+        // function getFactFetch(){
+        //   let number = numberInput.value;
+        //
+        //   if(number != ''){
+        //     fetch('http://numbersapi.com/'+number)
+        //     .then(response => response.text())
+        // response comes in form of data
+        //on top change to fetch instead of Ajax = getFactAjax
+        //     .then(data => {
+        //       fact.style.display = 'block';
+        //       factText.innerText = data;
+        //     })
+        //     .catch(err => console.log(err));
+        //   }
+        // }
+
+  </script>
+</body>
+</html>
